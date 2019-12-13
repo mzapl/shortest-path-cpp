@@ -5,7 +5,6 @@
 
 using namespace std;
 
-
 int vectorMin(vector<int> diagonals){
     /* Returns lowest value of the vector.*/
     int minimum = diagonals[0];
@@ -36,27 +35,6 @@ void printVector(vector<int> my_vect){
     }
     cout << " }";
 }
-
-void printVector(vector<vector<int>> my_vect){
-    /* Function iterates over the values in 2D vector and prints them. */
-    cout << "{ "  << endl;
-    for (int i = 0; i < my_vect.size() ; ++i) {
-        printVector(my_vect[i]);
-    }
-    cout << endl << "}" << endl ;
-}
-
-void printVector(vector<vector<vector<int>>> my_vect){
-    /* Function iterates over the values in 3D vector and prints them. */
-    for (int i = 0; i < my_vect.size() ; ++i) {
-        for (int j = 0; j < my_vect[i].size() ; ++j) {
-            printVector(my_vect[i][j]);
-        }
-        cout << endl;
-    }
-}
-
-
 
 vector<int> getDiagonals(vector<int> diagonals, int arr_height){
     /* Function extends the vector array with possible indexes on every step/column.
@@ -98,7 +76,7 @@ vector<vector<int>> cartesianProduct( vector<vector<int> >& v ) {
             u[i] = v[i][q.rem];
         }
 
-        // Do what you want here with u.
+        //Validates path before adding to result.
         if(isValid(u))
             result.push_back(u);
     }
@@ -115,6 +93,7 @@ int countPoints(vector<int> path, int tab[3][5]){
 }
 
 int main() {
+    //Input, declarations
     int tablica[3][5]= {
             {6, 2, 6, 1, 7},
             {4, 9, 5, 5, 8},
@@ -157,6 +136,7 @@ int main() {
             }
         }
 
+    //Result
     cout << "sum : " << result_val << endl;
     printVector(result_vect);
     return 0;
