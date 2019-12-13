@@ -62,6 +62,8 @@ bool isValid(vector<int> path) {
     return true;
 }
 
+//Cartesian Product function combines list of indexes to create sets of possible combinations (paths)
+//e.g. in: {{0,1}, {2,3}, {4,5}} out: {{0, 2, 4}, {0, 2, 5}, {0, 3, 4} ...... {1, 3, 5}}
 vector<vector<int>> cartesianProduct( vector<vector<int> >& v ) {
     auto product = []( long long a, vector<int>& b ) { return a*b.size(); };
     const long long N = accumulate( v.begin(), v.end(), 1LL, product );
@@ -83,6 +85,7 @@ vector<vector<int>> cartesianProduct( vector<vector<int> >& v ) {
     return result ;
 }
 
+//Counts points for given path
 int countPoints(vector<int> path, int tab[3][5]){
     int sum = 0, col = 0;
     for(auto ind: path) {
