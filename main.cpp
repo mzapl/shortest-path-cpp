@@ -1,5 +1,6 @@
 #include <iostream>
-#include <vector>
+#include <vector> //s.e
+#include <string> //s.e
 #include <numeric> //accumulate
 #include <algorithm> //min_element, max_element
 
@@ -27,21 +28,34 @@ int vectorMax(vector<int> diagonals){
     return maximum;
 }
 
+
 void printVector(vector<int> my_vect){
-    /* Function iterates over the values in vector and prints them. */
-    cout << "{ ";
-    for (int i = 0; i < my_vect.size() ; ++i) {
-        cout << my_vect[i] << ", ";
+    /* Function iterates over the values in vector and prints them neatly. */
+    string result = "{";
+    for(int i=0; i<my_vect.size(); i++){
+        if(i == my_vect.size() - 1)
+            result += to_string(my_vect[i]) + "}, ";
+        else
+            result += to_string(my_vect[i]) + ", ";
     }
-    cout << " }";
+    cout << result;
 }
+
+void printVector(vector<vector<int>> my_vect){
+    /* Function iterates over the values in vector and prints them neatly. */
+    cout << "{" << endl;
+    for(vector<int> vect:my_vect)
+        printVector(vect);
+    cout << endl << "}" << endl;
+}
+
 
 vector<int> getDiagonals(vector<int> diagonals, int arr_height){
     /* Function extends the vector array with possible indexes on every step/column.
      * eg. step 1: starting point 0, step 2: point 0 (going right) + point 1 (going diagonal) (cant go up, below index 0)
      * eg. step 1: starting point 1, step 2: point 0 (diagonal up) + point 1 (going right) + point 2 (diagonal down)
      * */
-    auto mymin = vectorMin(diagonals);
+    int mymin = vectorMin(diagonals);
     auto mymax = vectorMax(diagonals);
     if(mymin > 0) {
         diagonals.insert(diagonals.end(), mymin - 1);
@@ -140,7 +154,14 @@ int main() {
         }
 
     //Result
-    cout << "sum : " << result_val << endl;
-    printVector(result_vect);
+//    cout << "sum : " << result_val << endl;
+//    printVector(result_vect);
+
+    //testing prints
+    for(auto x:indexes)
+        printVector(x);
+
+
+
     return 0;
 }
